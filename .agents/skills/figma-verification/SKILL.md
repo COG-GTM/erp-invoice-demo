@@ -38,13 +38,13 @@ This is a training skill for UX designers. The designer does not code. All outpu
    - Devin reads the Figma file, opens the staging app via computer use, screenshots key states, and compares
    - This can be scheduled to run automatically after each deploy (see Devin's Scheduled Sessions feature)
 
-7. **Wrap up.** Tell the designer to start a new session and invoke: `@skills:ux-writing-review`
+7. **Wrap up.** Tell the designer to continue to the next lesson. If running standalone, invoke `@skills:ux-writing-review`. If running as part of the consolidated curriculum, invoke `@skills:training-phase-2` which includes this lesson.
 
 ---
 
 ## Training Progress
 
-**Estimated total training time: ~55 minutes**
+**Recommended:** Use the consolidated `@skills:training-phase-2` instead, which runs figma-verification and ux-writing-review in a single session.
 
 **Phase 1 — Foundations:**
 1. ~~designer-intro~~ (~5 min)
@@ -52,9 +52,9 @@ This is a training skill for UX designers. The designer does not code. All outpu
 3. ~~desktop-vs-web~~ (~4 min)
 
 **Phase 2 — Design Workflows:**
-4. ~~research-benchmarking~~ (~7 min)
-5. **figma-verification** (~7 min) — You are here
-6. ux-writing-review (~6 min)
+4. **figma-verification** (~7 min) — You are here
+5. ux-writing-review (~6 min)
+6. research-benchmarking (~7 min, optional)
 
 **Phase 3 — Building Reusable Automation:**
 7. learn-knowledge (~5 min)

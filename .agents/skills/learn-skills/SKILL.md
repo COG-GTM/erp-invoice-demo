@@ -24,9 +24,9 @@ This is a training skill for UX designers. The designer does not code. All instr
    
    Show the structure using this skill file itself as an example — the designer is running a SKILL.md right now!
 
-3. **Create a skill together.** Tell the designer you're going to create a `figma-audit` skill together that codifies the Figma verification workflow from lesson 5. Explain that the designer describes what the procedure should be, and Devin will write the SKILL.md file and submit it as a PR.
+3. **Create a skill together.** Tell the designer you're going to create a `figma-audit` skill together that codifies the Figma verification workflow from the earlier Figma lesson. Explain that normally the designer would describe what the procedure should check, and Devin writes the SKILL.md file and submits it as a PR.
 
-   Ask the designer: "In your own words, what should the Figma audit procedure check?" Let them answer. Then combine their input with the pattern from lesson 5 to produce:
+   Present the following skill content, explaining each section as you go:
 
    ```markdown
    ---
@@ -95,7 +95,7 @@ This is a training skill for UX designers. The designer does not code. All instr
 
 ## Training Progress
 
-**Estimated total training time: ~55 minutes**
+**Recommended:** Use the consolidated `@skills:training-phase-3` instead, which runs all three Phase 3 lessons in a single session.
 
 **Phase 1 — Foundations:**
 1. ~~designer-intro~~ (~5 min)
@@ -103,9 +103,9 @@ This is a training skill for UX designers. The designer does not code. All instr
 3. ~~desktop-vs-web~~ (~4 min)
 
 **Phase 2 — Design Workflows:**
-4. ~~research-benchmarking~~ (~7 min)
-5. ~~figma-verification~~ (~7 min)
-6. ~~ux-writing-review~~ (~6 min)
+4. ~~figma-verification~~ (~7 min)
+5. ~~ux-writing-review~~ (~6 min)
+6. ~~research-benchmarking~~ (~7 min, optional)
 
 **Phase 3 — Building Reusable Automation:**
 7. ~~learn-knowledge~~ (~5 min)
