@@ -64,13 +64,13 @@ This is a training skill for UX designers. The designer does not code. All instr
 
 7. **Iteration tip.** If the results aren't quite right, the designer can chat with Devin to refine, then update the Playbook with improved instructions. Running 2+ sessions in parallel with the same Playbook is a great way to quickly identify issues with the instructions.
 
-8. **Wrap up.** Tell the designer to start a new session and invoke: `@skills:learn-skills`
+8. **Wrap up.** Tell the designer to continue to the next lesson. If running standalone, invoke `@skills:learn-skills`. If running as part of the consolidated curriculum, invoke `@skills:training-phase-3` which includes this lesson.
 
 ---
 
 ## Training Progress
 
-**Estimated total training time: ~55 minutes**
+**Recommended:** Use the consolidated `@skills:training-phase-3` instead, which runs all three Phase 3 lessons in a single session.
 
 **Phase 1 — Foundations:**
 1. ~~designer-intro~~ (~5 min)
@@ -78,9 +78,9 @@ This is a training skill for UX designers. The designer does not code. All instr
 3. ~~desktop-vs-web~~ (~4 min)
 
 **Phase 2 — Design Workflows:**
-4. ~~research-benchmarking~~ (~7 min)
-5. ~~figma-verification~~ (~7 min)
-6. ~~ux-writing-review~~ (~6 min)
+4. ~~figma-verification~~ (~7 min)
+5. ~~ux-writing-review~~ (~6 min)
+6. ~~research-benchmarking~~ (~7 min, optional)
 
 **Phase 3 — Building Reusable Automation:**
 7. ~~learn-knowledge~~ (~5 min)

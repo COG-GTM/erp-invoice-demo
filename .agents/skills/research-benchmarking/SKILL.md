@@ -40,13 +40,15 @@ This is a training skill for UX designers. The designer does not code. All outpu
    - NOT a replacement for their own design judgment
    - Screenshots and tables go into their analysis docs, not directly into Figma
 
-6. **Wrap up.** Tell the designer to start a new session and invoke: `@skills:figma-verification`
+6. **Wrap up.** Tell the designer to continue to the next lesson. If running standalone, invoke `@skills:figma-verification`. If running as part of the consolidated curriculum, this skill is an optional bonus — return to `@skills:training-phase-2` for the main flow.
+
+   **Note:** A pre-cached comparison table is also available at `docs/competitor-benchmarks.md` for immediate reference without the browser overhead.
 
 ---
 
 ## Training Progress
 
-**Estimated total training time: ~55 minutes**
+**Note:** This skill is optional and not required for the main training flow. The consolidated `@skills:training-phase-2` covers figma-verification and ux-writing-review without browser overhead. Run this skill separately when you want live competitive research.
 
 **Phase 1 — Foundations:**
 1. ~~designer-intro~~ (~5 min)
@@ -54,9 +56,9 @@ This is a training skill for UX designers. The designer does not code. All outpu
 3. ~~desktop-vs-web~~ (~4 min)
 
 **Phase 2 — Design Workflows:**
-4. **research-benchmarking** (~7 min) — You are here
-5. figma-verification (~7 min)
-6. ux-writing-review (~6 min)
+4. figma-verification (~7 min)
+5. ux-writing-review (~6 min)
+6. **research-benchmarking** (~7 min, optional) — You are here
 
 **Phase 3 — Building Reusable Automation:**
 7. learn-knowledge (~5 min)
