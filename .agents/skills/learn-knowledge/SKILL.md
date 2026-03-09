@@ -41,7 +41,17 @@ This is a training skill for UX designers. The designer does not code. All instr
    f. **Pin it to the repo** — select the comarch-devin-demo repository so this Knowledge is always active when working in this codebase.
    g. Click **Save**.
 
-4. **Test it.** Tell the designer to start a new session (or continue this one) and ask: "What color should I use for error states?" Devin should recall the Knowledge entry and answer `#dc2626`. If it doesn't, explain that Knowledge retrieval is based on trigger relevance — refining the trigger description can improve recall.
+4. **Test it with Ask Devin.** Tell the designer they can test the Knowledge entry instantly without starting a full session:
+
+   > "To verify your Knowledge entry works:
+   > 1. Open [https://app.devin.ai](https://app.devin.ai)
+   > 2. Use the **Ask Devin** quick-ask input
+   > 3. Type: 'What color should I use for error states?'
+   > 4. Devin should recall your Knowledge entry and answer `#dc2626`.
+   >
+   > This is a perfect example of when Ask Devin is the right tool — you're asking a quick factual question that Knowledge can answer instantly. No need for a full session."
+
+   If it doesn't recall the Knowledge, explain that retrieval is based on trigger relevance — refining the trigger description can improve recall.
 
 5. **Tips for good Knowledge entries.**
    - Keep each entry focused on one topic (don't combine design tokens with UX writing rules)

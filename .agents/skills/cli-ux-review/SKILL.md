@@ -5,6 +5,8 @@ argument-hint: <module-name>
 triggers: ["user", "model"]
 ---
 
+> **Quick alternative:** For a quick lookup of specific error messages or button labels, use **Ask Devin**: open [app.devin.ai](https://app.devin.ai), use the Ask Devin input, and type: *"What error messages does the Invoice service return in erp-invoice-demo?"* — Devin will list them in seconds. To look up the UX writing rules themselves, use **DeepWiki**: go to [deepwiki.com](https://deepwiki.com), paste the repo URL, and ask *"What are the UX writing rules?"* Use this full skill when you need a comprehensive audit across all components with a violations table.
+
 ## Steps
 
 1. Read the UX writing guidelines from `docs/ux-glossary.md`. Extract the key rules:

@@ -4,6 +4,8 @@ description: Compare legacy desktop validation rules against the web implementat
 triggers: ["user", "model"]
 ---
 
+> **Quick alternative:** For a quick lookup of individual rule sets, use **Ask Devin**: open [app.devin.ai](https://app.devin.ai), use the Ask Devin input, and type: *"What validation rules exist in the Invoice module web implementation in erp-invoice-demo?"* or *"What validation rules are in legacy/validation-rules.html?"* — Devin will list them in seconds. Use **DeepWiki** at [deepwiki.com](https://deepwiki.com) to browse what a specific file contains. Use this full skill when you need a structured side-by-side gap analysis with edge cases.
+
 ## Steps
 
 1. Read the desktop validation rules from `legacy/validation-rules.html`. Extract every rule: rule ID, field, what it checks, and the desktop error message.
