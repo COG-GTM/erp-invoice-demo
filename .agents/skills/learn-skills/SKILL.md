@@ -78,8 +78,30 @@ This is a training skill for UX designers. The designer does not code. All instr
 
    **Rule of thumb:** Use Knowledge for "what Devin should know," Playbooks for "how to do something across repos," and Skills for "how to do something in this repo."
 
-7. **Congratulate and wrap up.** The designer has completed all 9 training lessons! They've learned to:
+7. **Present the "Choosing the Right Tool" cheat sheet.** Now that the designer has learned all the tools, present this decision tree for daily use:
+
+   **When should I use each tool?**
+
+   | I want to... | Use | How |
+   | --- | --- | --- |
+   | Understand what a repo or module does | **DeepWiki** | Go to [deepwiki.com](https://deepwiki.com), paste the repo URL, ask your question |
+   | Look up a specific fact in the code (e.g., "what color is the error token?") | **Ask Devin** | Open [app.devin.ai](https://app.devin.ai), use the Ask Devin input, type your question |
+   | Get a quick list (e.g., "what validation rules exist?") | **Ask Devin** | Same as above — Devin reads the code and responds in seconds |
+   | Check if there are token mismatches | **Ask Devin** | Ask: "Are there mismatches between tokens.spec.json and tokens.css?" |
+   | Run a full audit with a structured report | **Full Session + Skill** | Start a new session, invoke `@skills:cli-check-all` or `@skills:cli-ux-review` |
+   | Compare desktop vs. web with gap analysis | **Full Session + Skill** | Start a new session, invoke `@skills:cli-desktop-parity` |
+   | Do competitive research with screenshots | **Full Session** | Start a new session, describe the research task |
+   | Create or modify files (Knowledge, Skills, PRs) | **Full Session** | Start a new session — only full sessions can write files |
+   | Browse a website or take screenshots | **Full Session** | Start a new session — only full sessions have computer use |
+
+   **Simple rule of thumb:**
+   - **"What is X?"** → DeepWiki
+   - **"What does the code say about X?"** → Ask Devin
+   - **"Do a multi-step task / change something / browse the web"** → Full Session
+
+8. **Congratulate and wrap up.** The designer has completed all 9 training lessons! They've learned to:
    - Talk to Devin and read the session timeline
+   - Choose the right tool: DeepWiki vs. Ask Devin vs. Full Sessions
    - Analyze systems beyond the happy path
    - Compare desktop vs. web implementations
    - Research competitors with computer use

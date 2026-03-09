@@ -4,6 +4,8 @@ description: Compare design tokens in code against the Figma spec and output a m
 triggers: ["user", "model"]
 ---
 
+> **Quick alternative:** For a fast yes/no check without running this full skill, use **Ask Devin**: open [app.devin.ai](https://app.devin.ai), use the Ask Devin input, and type: *"Are there any mismatches between tokens.spec.json and tokens.css in erp-invoice-demo?"* — Devin will list mismatches in seconds. Use this full skill when you need a structured report with severity ratings.
+
 ## Steps
 
 1. Read the Figma spec values from `src/tokens/tokens.spec.json`.
