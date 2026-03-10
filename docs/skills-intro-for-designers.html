@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1440, initial-scale=1" />
+  <title>Skills for Designers</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── Palette (matched from Cognition Platform slide) ── */
+    :root {
+      --bg:          #0b1120;
+      --surface:     #111827;
+      --border:      #1e293b;
+      --border-glow: #2a3a52;
+      --accent:      #7dd3fc;      /* light-blue headings */
+      --accent-dim:  #38bdf8;
+      --text:        #e2e8f0;
+      --text-muted:  #94a3b8;
+      --highlight:   #1e3a5f;
+      --code-bg:     #1a2332;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Slide container ── */
+    .slide {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 56px 48px 40px;
+      flex: 1;
+    }
+
+    /* ── Header row ── */
+    .header {
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .header h1 {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .header h1 span {
+      color: var(--accent);
+    }
+    .header .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 460px;
+      padding-bottom: 6px;
+    }
+
+    /* ── Three-column grid ── */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+    }
+
+    .col {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 32px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .col::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .col-number {
+      display: inline-block;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--highlight);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 30px;
+      margin-bottom: 18px;
+    }
+
+    .col h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .col .col-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      font-style: italic;
+    }
+
+    .col h3 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-dim);
+      margin: 20px 0 10px;
+    }
+    .col h3:first-of-type { margin-top: 0; }
+
+    .col p, .col li {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .col li {
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 7px;
+    }
+    .col li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    /* code / file-path styling */
+    code {
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 12.5px;
+      background: var(--code-bg);
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    /* Diagram box */
+    .diagram {
+      background: var(--code-bg);
+      border: 1px dashed var(--border-glow);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin: 14px 0 8px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .diagram .hl { color: var(--accent); font-weight: 600; }
+
+    /* comparison table */
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 6px;
+      font-size: 12.5px;
+    }
+    .mini-table th {
+      text-align: left;
+      color: var(--accent);
+      font-weight: 600;
+      padding: 6px 10px 6px 0;
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .mini-table td {
+      padding: 5px 10px 5px 0;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 28px 0 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* ── Connectors (decorative dots like Cognition slide) ── */
+    .dot-connector {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: -14px 0 -14px;
+      position: relative;
+      z-index: 1;
+    }
+    .dot-connector span {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--border-glow);
+    }
+
+    /* Responsive (not primary concern for slide, but safe) */
+    @media (max-width: 960px) {
+      .columns { grid-template-columns: 1fr; }
+      .header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+
+    <!-- ─── Header ─── -->
+    <div class="header">
+      <h1>Introducing<br><span>Skills</span></h1>
+      <p class="subtitle">
+        Reusable, version-controlled procedures that let teams scale work
+        across projects and processes in a standardized way &mdash; no coding required.
+      </p>
+    </div>
+
+    <!-- ─── Three Columns ─── -->
+    <div class="columns">
+
+      <!-- ── Column 1: What Are Skills? ── -->
+      <div class="col">
+        <div class="col-number">1</div>
+        <h2>What Are Skills?</h2>
+        <p class="col-tagline">Repeatable procedures that standardize how work gets done</p>
+
+        <h3>Definition</h3>
+        <p>
+          Skills are <code>SKILL.md</code> files committed to your repository.
+          They teach AI agents repeatable, step-by-step procedures &mdash;
+          from verifying design tokens to auditing UX copy. They follow the open
+          <strong>Agent Skills standard</strong> and work across multiple AI tools.
+        </p>
+
+        <h3>How They Work</h3>
+        <div class="diagram"><span class="hl">Designer describes</span> a procedure
+        &darr;
+Devin writes the <span class="hl">SKILL.md</span> file
+        &darr;
+Team <span class="hl">reviews via PR</span> (like any code)
+        &darr;
+Skill is <span class="hl">auto-discovered</span> in every session</div>
+
+        <h3>Key Properties</h3>
+        <ul>
+          <li><strong>Version-controlled</strong> &mdash; tracked in Git, reviewed via PRs</li>
+          <li><strong>Auto-discovered</strong> &mdash; Devin finds them at session start</li>
+          <li><strong>Parameterized</strong> &mdash; accept dynamic arguments via <code>$ARGUMENTS</code></li>
+          <li><strong>Open standard</strong> &mdash; 87,000+ skills on <strong>skills.sh</strong></li>
+        </ul>
+
+        <h3>Skills vs. Other Primitives</h3>
+        <table class="mini-table">
+          <tr><th></th><th>Knowledge</th><th>Playbooks</th><th>Skills</th></tr>
+          <tr><td>Lives in</td><td>Web UI</td><td>Web UI</td><td>Repo</td></tr>
+          <tr><td>Triggered</td><td>Auto</td><td>Manual</td><td>Auto / name</td></tr>
+          <tr><td>Versioned</td><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Arguments</td><td>No</td><td>No</td><td>Yes</td></tr>
+        </table>
+      </div>
+
+      <!-- ── Column 2: What Skills Can Do for Designers ── -->
+      <div class="col">
+        <div class="col-number">2</div>
+        <h2>What Skills Do for Designers</h2>
+        <p class="col-tagline">Automate your workflow &mdash; from analysis to verification</p>
+
+        <h3>Your Workflow, Automated</h3>
+        <p>
+          The Comarch UX team&rsquo;s process &mdash; analyzing desktop behavior,
+          researching competitors, creating drafts, verifying implementations &mdash;
+          maps directly to Skills that run on demand:
+        </p>
+
+        <h3>Daily Verification (No Code)</h3>
+        <ul>
+          <li><code>cli-token-audit</code> &mdash; Compare Figma spec tokens against CSS implementation</li>
+          <li><code>cli-ux-review</code> &mdash; Scan modules for UX writing violations</li>
+          <li><code>cli-desktop-parity</code> &mdash; Gap analysis: legacy desktop vs. web</li>
+          <li><code>cli-check-all</code> &mdash; Run all three checks at once</li>
+        </ul>
+
+        <h3>Research &amp; Analysis</h3>
+        <ul>
+          <li><code>system-analysis</code> &mdash; Analyze validation rules, error states, edge cases</li>
+          <li><code>desktop-vs-web</code> &mdash; Compare old &amp; new system logic</li>
+          <li><code>research-benchmarking</code> &mdash; Browse competitor ERPs, capture screenshots</li>
+        </ul>
+
+        <h3>Design Verification</h3>
+        <ul>
+          <li><code>figma-verification</code> &mdash; Compare Figma designs against running app</li>
+          <li><code>ux-writing-review</code> &mdash; Audit strings for glossary &amp; tone compliance</li>
+          <li><code>test-before-pr</code> &mdash; Pre-PR quality gate (lint, tests, tokens)</li>
+        </ul>
+
+        <h3>Real Impact</h3>
+        <ul>
+          <li>Designers verify implementations <strong>without writing code</strong></li>
+          <li>Catch token drift, copy inconsistencies, and missing rules <strong>early</strong></li>
+          <li>Support the full designer workflow: analysis &rarr; drafts &rarr; consultations &rarr; verification</li>
+          <li>Build a <strong>shared library</strong> the whole UX team benefits from</li>
+        </ul>
+      </div>
+
+      <!-- ── Column 3: How to Create Skills ── -->
+      <div class="col">
+        <div class="col-number">3</div>
+        <h2>How to Create Skills</h2>
+        <p class="col-tagline">Describe it in plain language &mdash; Devin writes the file</p>
+
+        <h3>Skill File Structure</h3>
+        <div class="diagram"><span class="hl">---</span>
+name: figma-audit
+description: Compare Figma tokens
+  against implementation.
+argument-hint: &lt;figma-url&gt;
+triggers: ["user", "model"]
+<span class="hl">---</span>
+
+<span class="hl">## Step 1</span>  Read the spec tokens
+<span class="hl">## Step 2</span>  Compare against CSS
+<span class="hl">## Step 3</span>  Output discrepancy report</div>
+
+        <h3>Where Skills Live</h3>
+        <p>
+          Place files at<br>
+          <code>.agents/skills/&lt;name&gt;/SKILL.md</code><br>
+          Devin discovers them automatically at session start.
+        </p>
+
+        <h3>Creation Steps</h3>
+        <ul>
+          <li><strong>Describe</strong> your procedure to Devin in natural language</li>
+          <li>Devin <strong>generates</strong> the <code>SKILL.md</code> file</li>
+          <li>Devin opens a <strong>PR</strong> &mdash; your team reviews it like code</li>
+          <li>Once merged, it&rsquo;s <strong>live</strong> &mdash; available to every session</li>
+        </ul>
+
+        <h3>Invoke a Skill</h3>
+        <ul>
+          <li>Mention by name: <code>@skills:figma-audit</code></li>
+          <li>With arguments: <code>@skills:cli-ux-review invoices</code></li>
+          <li>Or let Devin detect and invoke automatically</li>
+        </ul>
+
+        <h3>Getting Started</h3>
+        <ul>
+          <li>Run <code>init-design-checks</code> to scaffold verification skills for any repo</li>
+          <li>Complete the 9-lesson designer training (~55 min) to learn all three primitives</li>
+          <li>Browse 87K+ community skills at <strong>skills.sh</strong></li>
+        </ul>
+      </div>
+
+    </div><!-- /columns -->
+
+  </div><!-- /slide -->
+
+  <div class="footer">Cognition &middot; Proprietary &amp; Confidential</div>
+
+</body>
+</html>
