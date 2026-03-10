@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'invoices', pathMatch: 'full' },
+  { path: '', redirectTo: 'modules', pathMatch: 'full' },
+  {
+    path: 'modules',
+    loadChildren: () =>
+      import('../modules/modules/modules.routes').then(m => m.MODULE_ROUTES),
+  },
   {
     path: 'invoices',
     loadChildren: () =>
