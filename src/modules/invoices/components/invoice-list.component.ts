@@ -12,15 +12,25 @@ import { Invoice } from '../models/invoice.model';
   template: `
     <div class="page-header">
       <h2 class="page-title">Invoices</h2>
-      <ui-button variant="primary" (click)="onCreate()">
-        Submit <!-- DEFECT: should be "Create Invoice" (action verb) -->
-      </ui-button>
+      <div class="page-actions">
+        <ui-button
+          variant="secondary"
+          [disabled]="selectedInvoices.length === 0"
+          (click)="onExport()">
+          Export ({{ selectedInvoices.length }})
+        </ui-button>
+        <ui-button variant="primary" (click)="onCreate()">
+          Submit <!-- DEFECT: should be "Create Invoice" (action verb) -->
+        </ui-button>
+      </div>
     </div>
 
     <!-- DEFECT: no empty state handling — table just renders with no rows -->
     <ui-data-table
       [columns]="columns"
       [rows]="invoices"
+      [selectable]="true"
+      (selectionChange)="onSelectionChange($event)"
       (rowClick)="onRowClick($event)" />
   `,
   styles: [`
@@ -34,6 +44,10 @@ import { Invoice } from '../models/invoice.model';
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-bold);
     }
+    .page-actions {
+      display: flex;
+      gap: var(--space-sm);
+    }
   `]
 })
 export class InvoiceListComponent implements OnInit {
@@ -46,6 +60,7 @@ export class InvoiceListComponent implements OnInit {
     { key: 'status', label: 'Status', width: '100px' },
   ];
   invoices: Invoice[] = [];
+  selectedInvoices: Invoice[] = [];
 
   constructor(
     private invoiceService: InvoiceService,
@@ -58,6 +73,14 @@ export class InvoiceListComponent implements OnInit {
 
   onCreate() {
     this.router.navigate(['/invoices/create']);
+  }
+
+  onSelectionChange(selected: Record<string, any>[]) {
+    this.selectedInvoices = selected as Invoice[];
+  }
+
+  onExport() {
+    this.invoiceService.exportToCsv(this.selectedInvoices);
   }
 
   onRowClick(row: Record<string, any>) {
