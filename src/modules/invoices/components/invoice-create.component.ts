@@ -115,7 +115,7 @@ import { InvoiceFormData } from '../models/invoice.model';
   `]
 })
 export class InvoiceCreateComponent {
-  form: Record<string, any> = {
+  form: InvoiceFormData = {
     number: '',
     customerName: '',
     issueDate: '',
@@ -137,7 +137,7 @@ export class InvoiceCreateComponent {
     this.errors = {};
     this.submitError = '';
     try {
-      this.invoiceService.create(this.form as InvoiceFormData);
+      this.invoiceService.create(this.form);
       this.router.navigate(['/invoices']);
     } catch (e: any) {
       this.submitError = e.message;
