@@ -61,16 +61,20 @@ export class FormFieldComponent implements ControlValueAccessor {
   @Input() fieldId = '';
 
   value = '';
-  onChange: (val: string) => void = () => {};
+  onChange: (val: string | number) => void = () => {};
   onTouched: () => void = () => {};
 
-  writeValue(val: string) { this.value = val || ''; }
-  registerOnChange(fn: (val: string) => void) { this.onChange = fn; }
+  writeValue(val: string | number) { this.value = val != null ? String(val) : ''; }
+  registerOnChange(fn: (val: string | number) => void) { this.onChange = fn; }
   registerOnTouched(fn: () => void) { this.onTouched = fn; }
 
   onInput(event: Event) {
-    const val = (event.target as HTMLInputElement).value;
-    this.value = val;
-    this.onChange(val);
+    const input = event.target as HTMLInputElement;
+    this.value = input.value;
+    if (this.type === 'number') {
+      this.onChange(input.value === '' ? 0 : input.valueAsNumber);
+    } else {
+      this.onChange(input.value);
+    }
   }
 }
