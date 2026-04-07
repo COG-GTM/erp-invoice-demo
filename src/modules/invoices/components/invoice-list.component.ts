@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataTableComponent, TableColumn, ButtonComponent } from '../../../components/ui';
 import { InvoiceService } from '../services/invoice.service';
@@ -8,7 +7,7 @@ import { Invoice } from '../models/invoice.model';
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  imports: [CommonModule, DataTableComponent, ButtonComponent],
+  imports: [DataTableComponent, ButtonComponent],
   template: `
     <div class="page-header">
       <h2 class="page-title">Invoices</h2>

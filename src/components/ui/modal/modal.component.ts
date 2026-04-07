@@ -1,25 +1,25 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ui-modal',
   standalone: true,
-  imports: [CommonModule],
   template: `
-    <div class="modal-backdrop" *ngIf="open" (click)="close.emit()">
-      <div class="modal-panel" (click)="$event.stopPropagation()">
-        <div class="modal-header">
-          <h2 class="modal-title">{{ title }}</h2>
-          <button class="modal-close" (click)="close.emit()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <ng-content />
-        </div>
-        <div class="modal-footer">
-          <ng-content select="[modal-footer]" />
+    @if (open) {
+      <div class="modal-backdrop" (click)="close.emit()">
+        <div class="modal-panel" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h2 class="modal-title">{{ title }}</h2>
+            <button class="modal-close" (click)="close.emit()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <ng-content />
+          </div>
+          <div class="modal-footer">
+            <ng-content select="[modal-footer]" />
+          </div>
         </div>
       </div>
-    </div>
+    }
   `,
   styles: [`
     .modal-backdrop {

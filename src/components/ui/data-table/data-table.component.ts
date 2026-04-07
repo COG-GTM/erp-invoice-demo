@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 export interface TableColumn {
   key: string;
@@ -11,26 +10,30 @@ export interface TableColumn {
 @Component({
   selector: 'ui-data-table',
   standalone: true,
-  imports: [CommonModule],
   template: `
     <div class="table-wrapper">
       <table class="data-table">
         <thead>
           <tr>
-            <th *ngFor="let col of columns"
-                [style.width]="col.width"
-                [style.text-align]="col.align || 'left'">
-              {{ col.label }}
-            </th>
+            @for (col of columns; track col.key) {
+              <th [style.width]="col.width"
+                  [style.text-align]="col.align || 'left'">
+                {{ col.label }}
+              </th>
+            }
           </tr>
         </thead>
         <tbody>
           <!-- DEFECT: no empty state — just renders nothing when rows is empty -->
-          <tr *ngFor="let row of rows" (click)="rowClick.emit(row)" class="table-row">
-            <td *ngFor="let col of columns" [style.text-align]="col.align || 'left'">
-              {{ row[col.key] }}
-            </td>
-          </tr>
+          @for (row of rows; track $index) {
+            <tr (click)="rowClick.emit(row)" class="table-row">
+              @for (col of columns; track col.key) {
+                <td [style.text-align]="col.align || 'left'">
+                  {{ row[col.key] }}
+                </td>
+              }
+            </tr>
+          }
         </tbody>
       </table>
     </div>

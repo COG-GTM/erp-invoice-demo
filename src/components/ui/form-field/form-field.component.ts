@@ -1,11 +1,10 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ui-form-field',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => FormFieldComponent),
@@ -22,7 +21,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
         [value]="value"
         (input)="onInput($event)"
         (blur)="onTouched()" />
-      <span class="form-error" *ngIf="error">{{ error }}</span>
+      @if (error) {
+        <span class="form-error">{{ error }}</span>
+      }
     </div>
   `,
   styles: [`

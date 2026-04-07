@@ -1,10 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ui-button',
   standalone: true,
-  imports: [CommonModule],
   template: `
     <button
       [class]="'btn btn--' + variant + ' btn--' + size"
