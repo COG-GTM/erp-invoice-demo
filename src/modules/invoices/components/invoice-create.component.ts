@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent, FormFieldComponent } from '../../../components/ui';
@@ -9,7 +8,7 @@ import { InvoiceFormData } from '../models/invoice.model';
 @Component({
   selector: 'app-invoice-create',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent, FormFieldComponent],
+  imports: [FormsModule, ButtonComponent, FormFieldComponent],
   template: `
     <div class="create-page">
       <div class="create-header">
@@ -75,9 +74,11 @@ import { InvoiceFormData } from '../models/invoice.model';
         </div>
       </form>
 
-      <div class="error-banner" *ngIf="submitError">
-        {{ submitError }}
-      </div>
+      @if (submitError) {
+        <div class="error-banner">
+          {{ submitError }}
+        </div>
+      }
     </div>
   `,
   styles: [`
@@ -115,7 +116,7 @@ import { InvoiceFormData } from '../models/invoice.model';
   `]
 })
 export class InvoiceCreateComponent {
-  form: Record<string, any> = {
+  form: InvoiceFormData = {
     number: '',
     customerName: '',
     issueDate: '',
@@ -137,7 +138,7 @@ export class InvoiceCreateComponent {
     this.errors = {};
     this.submitError = '';
     try {
-      this.invoiceService.create(this.form as InvoiceFormData);
+      this.invoiceService.create(this.form);
       this.router.navigate(['/invoices']);
     } catch (e: any) {
       this.submitError = e.message;

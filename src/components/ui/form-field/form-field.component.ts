@@ -1,11 +1,10 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ui-form-field',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => FormFieldComponent),
@@ -22,7 +21,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
         [value]="value"
         (input)="onInput($event)"
         (blur)="onTouched()" />
-      <span class="form-error" *ngIf="error">{{ error }}</span>
+      @if (error) {
+        <span class="form-error">{{ error }}</span>
+      }
     </div>
   `,
   styles: [`
@@ -60,16 +61,20 @@ export class FormFieldComponent implements ControlValueAccessor {
   @Input() fieldId = '';
 
   value = '';
-  onChange: (val: string) => void = () => {};
+  onChange: (val: string | number) => void = () => {};
   onTouched: () => void = () => {};
 
-  writeValue(val: string) { this.value = val || ''; }
-  registerOnChange(fn: (val: string) => void) { this.onChange = fn; }
+  writeValue(val: string | number) { this.value = val != null ? String(val) : ''; }
+  registerOnChange(fn: (val: string | number) => void) { this.onChange = fn; }
   registerOnTouched(fn: () => void) { this.onTouched = fn; }
 
   onInput(event: Event) {
-    const val = (event.target as HTMLInputElement).value;
-    this.value = val;
-    this.onChange(val);
+    const input = event.target as HTMLInputElement;
+    this.value = input.value;
+    if (this.type === 'number') {
+      this.onChange(input.value === '' ? 0 : input.valueAsNumber);
+    } else {
+      this.onChange(input.value);
+    }
   }
 }

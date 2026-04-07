@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent, ModalComponent } from '../../../components/ui';
 import { InvoiceService } from '../services/invoice.service';
@@ -8,82 +8,88 @@ import { Invoice } from '../models/invoice.model';
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, ModalComponent],
+  imports: [DecimalPipe, ButtonComponent, ModalComponent],
   template: `
-    <div *ngIf="invoice" class="detail-page">
-      <div class="detail-header">
-        <div>
-          <h2 class="detail-title">Invoice {{ invoice.number }}</h2>
-          <span class="detail-status" [class]="'status--' + invoice.status">
-            {{ invoice.status }}
-          </span>
+    @if (invoice) {
+      <div class="detail-page">
+        <div class="detail-header">
+          <div>
+            <h2 class="detail-title">Invoice {{ invoice.number }}</h2>
+            <span class="detail-status" [class]="'status--' + invoice.status">
+              {{ invoice.status }}
+            </span>
+          </div>
+          <div class="detail-actions">
+            <ui-button variant="secondary" (click)="onBack()">Back</ui-button>
+            <ui-button variant="danger" (click)="confirmDelete = true">
+              Submit <!-- DEFECT: should be "Delete Invoice" (action verb) -->
+            </ui-button>
+          </div>
         </div>
-        <div class="detail-actions">
-          <ui-button variant="secondary" (click)="onBack()">Back</ui-button>
-          <ui-button variant="danger" (click)="confirmDelete = true">
-            Submit <!-- DEFECT: should be "Delete Invoice" (action verb) -->
-          </ui-button>
+
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3>Customer</h3>
+            <p>{{ invoice.customerName }}</p>
+          </div>
+          <div class="detail-card">
+            <h3>Issue Date</h3>
+            <p>{{ invoice.issueDate }}</p>
+          </div>
+          <div class="detail-card">
+            <h3>Due Date</h3>
+            <p>{{ invoice.dueDate }}</p>
+          </div>
+          <div class="detail-card">
+            <h3>Amount</h3>
+            <p>{{ invoice.amount | number:'1.2-2' }} {{ invoice.currency }}</p>
+          </div>
         </div>
+
+        @if (invoice.items.length) {
+          <div class="detail-section">
+            <h3>Line Items</h3>
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Qty</th>
+                  <th>Unit Price</th>
+                  <th>Tax</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of invoice.items; track $index) {
+                  <tr>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.unitPrice | number:'1.2-2' }}</td>
+                    <td>{{ item.taxRate }}%</td>
+                    <td>{{ item.quantity * item.unitPrice * (1 + item.taxRate / 100) | number:'1.2-2' }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+
+        <ui-modal [open]="confirmDelete" title="Delete Invoice" (close)="confirmDelete = false">
+          <p>Are you sure you want to delete invoice {{ invoice.number }}? This action cannot be undone.</p>
+          <div modal-footer>
+            <ui-button variant="secondary" (click)="confirmDelete = false">Cancel</ui-button>
+            <ui-button variant="danger" (click)="onDelete()">
+              Submit <!-- DEFECT: should be "Confirm Delete" (action verb) -->
+            </ui-button>
+          </div>
+        </ui-modal>
       </div>
-
-      <div class="detail-grid">
-        <div class="detail-card">
-          <h3>Customer</h3>
-          <p>{{ invoice.customerName }}</p>
-        </div>
-        <div class="detail-card">
-          <h3>Issue Date</h3>
-          <p>{{ invoice.issueDate }}</p>
-        </div>
-        <div class="detail-card">
-          <h3>Due Date</h3>
-          <p>{{ invoice.dueDate }}</p>
-        </div>
-        <div class="detail-card">
-          <h3>Amount</h3>
-          <p>{{ invoice.amount | number:'1.2-2' }} {{ invoice.currency }}</p>
-        </div>
+    } @else {
+      <div class="not-found">
+        <p>Invoice not found.</p>
+        <ui-button variant="secondary" (click)="onBack()">Back to list</ui-button>
       </div>
-
-      <div class="detail-section" *ngIf="invoice.items.length">
-        <h3>Line Items</h3>
-        <table class="items-table">
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Qty</th>
-              <th>Unit Price</th>
-              <th>Tax</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of invoice.items">
-              <td>{{ item.description }}</td>
-              <td>{{ item.quantity }}</td>
-              <td>{{ item.unitPrice | number:'1.2-2' }}</td>
-              <td>{{ item.taxRate }}%</td>
-              <td>{{ item.quantity * item.unitPrice * (1 + item.taxRate / 100) | number:'1.2-2' }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <ui-modal [open]="confirmDelete" title="Delete Invoice" (close)="confirmDelete = false">
-        <p>Are you sure you want to delete invoice {{ invoice.number }}? This action cannot be undone.</p>
-        <div modal-footer>
-          <ui-button variant="secondary" (click)="confirmDelete = false">Cancel</ui-button>
-          <ui-button variant="danger" (click)="onDelete()">
-            Submit <!-- DEFECT: should be "Confirm Delete" (action verb) -->
-          </ui-button>
-        </div>
-      </ui-modal>
-    </div>
-
-    <div *ngIf="!invoice" class="not-found">
-      <p>Invoice not found.</p>
-      <ui-button variant="secondary" (click)="onBack()">Back to list</ui-button>
-    </div>
+    }
   `,
   styles: [`
     .detail-header {
