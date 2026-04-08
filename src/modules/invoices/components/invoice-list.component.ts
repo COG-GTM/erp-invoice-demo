@@ -104,9 +104,9 @@ export class InvoiceListComponent implements OnInit {
       this.invoices = data;
       this.tableRows = data.map(inv => ({
         ...inv,
-        netAmount: computeNetAmount(inv),
-        tax: computeTaxAmount(inv),
-        grossAmount: computeGrossAmount(inv),
+        netAmount: formatCurrency(computeNetAmount(inv), inv.currency),
+        tax: formatCurrency(computeTaxAmount(inv), inv.currency),
+        grossAmount: formatCurrency(computeGrossAmount(inv), inv.currency),
       }));
       if (this.selectedInvoice) {
         const still = data.find(i => i.id === this.selectedInvoice!.id);
