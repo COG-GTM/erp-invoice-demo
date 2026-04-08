@@ -7,7 +7,7 @@
   /* Colors — Semantic */
   --color-success: #16a34a;
   --color-warning: #ca8a04;
-  --color-error: #e53e3e; /* DEFECT: Figma spec says #dc2626 */
+  --color-error: #dc2626;
   --color-info: #2563eb;
 
   /* Colors — Neutral */
@@ -55,8 +55,7 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
-  /* Modal — DEFECT: Figma spec says 32px padding */
-  --modal-padding: 24px;
+  --modal-padding: 32px;
   --modal-radius: var(--radius-lg);
   --modal-shadow: var(--shadow-lg);
 

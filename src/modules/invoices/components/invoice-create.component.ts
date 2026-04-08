@@ -69,9 +69,7 @@ import { InvoiceFormData } from '../models/invoice.model';
 
         <div class="form-actions">
           <ui-button variant="secondary" type="button" (click)="onCancel()">Cancel</ui-button>
-          <ui-button variant="primary" type="submit">
-            Submit <!-- DEFECT: should be "Create Invoice" -->
-          </ui-button>
+          <ui-button variant="primary" type="submit">Create Invoice</ui-button>
         </div>
       </form>
 

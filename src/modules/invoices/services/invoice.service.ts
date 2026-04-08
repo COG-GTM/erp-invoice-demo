@@ -47,7 +47,7 @@ export class InvoiceService {
 
     // Rule 1: Customer name required
     if (!data.customerName?.trim()) {
-      errors.push('Invalid customer name'); // DEFECT: inconsistent format — should be "[What happened]. [What to do]."
+      errors.push('Customer name is missing. Please enter a valid customer name.');
     }
 
     // Rule 2: Issue date required
@@ -57,7 +57,7 @@ export class InvoiceService {
 
     // Rule 3: Due date must be after issue date
     if (data.issueDate && data.dueDate && data.dueDate <= data.issueDate) {
-      errors.push('Invalid due date'); // DEFECT: inconsistent format
+      errors.push('Due date must be after the issue date. Please select a later date.');
     }
 
     // Rule 4: Amount must be positive
@@ -65,8 +65,16 @@ export class InvoiceService {
       errors.push('Invoice amount must be greater than zero. Please check line items.'); // correct format
     }
 
-    // DEFECT: Missing Rule 5 from desktop — invoice number must match pattern XX/YYYY/NNNNN
-    // DEFECT: Missing Rule 6 from desktop — at least one line item required
+    // Rule 5: Invoice number must match pattern XX/YYYY/NNNNN
+    const invoiceNumberPattern = /^[A-Z]{2}\/\d{4}\/\d{5}$/;
+    if (!data.number || !invoiceNumberPattern.test(data.number)) {
+      errors.push('Invoice number format is invalid. Please use the pattern XX/YYYY/NNNNN (e.g. FV/2024/00001).');
+    }
+
+    // Rule 6: At least one line item required (skip when amount is provided directly without items)
+    if ((!data.items || data.items.length === 0) && !(data.amount > 0)) {
+      errors.push('At least one line item is required. Please add an item to the invoice.');
+    }
 
     return errors;
   }
