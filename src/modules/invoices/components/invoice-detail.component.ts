@@ -20,9 +20,7 @@ import { Invoice } from '../models/invoice.model';
         </div>
         <div class="detail-actions">
           <ui-button variant="secondary" (click)="onBack()">Back</ui-button>
-          <ui-button variant="danger" (click)="confirmDelete = true">
-            Submit <!-- DEFECT: should be "Delete Invoice" (action verb) -->
-          </ui-button>
+          <ui-button variant="danger" (click)="confirmDelete = true">Delete Invoice</ui-button>
         </div>
       </div>
 
@@ -73,9 +71,7 @@ import { Invoice } from '../models/invoice.model';
         <p>Are you sure you want to delete invoice {{ invoice.number }}? This action cannot be undone.</p>
         <div modal-footer>
           <ui-button variant="secondary" (click)="confirmDelete = false">Cancel</ui-button>
-          <ui-button variant="danger" (click)="onDelete()">
-            Submit <!-- DEFECT: should be "Confirm Delete" (action verb) -->
-          </ui-button>
+          <ui-button variant="danger" (click)="onDelete()">Confirm Delete</ui-button>
         </div>
       </ui-modal>
     </div>
