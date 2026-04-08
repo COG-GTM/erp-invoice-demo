@@ -23,7 +23,7 @@ export type InvoiceFormData = Omit<Invoice, 'id' | 'status'>;
 /** Compute the net amount (sum of quantity * unitPrice) for all line items. */
 export function computeNetAmount(invoice: Invoice): number {
   if (!invoice.items || invoice.items.length === 0) {
-    return invoice.amount;
+    return Number(invoice.amount);
   }
   return invoice.items.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0);
 }
@@ -46,7 +46,8 @@ export function computeGrossAmount(invoice: Invoice): number {
 
 /** Format a number as currency with PLN suffix (e.g. "10,000.00 PLN"). */
 export function formatCurrency(value: number, currency: string = 'PLN'): string {
-  const formatted = value.toLocaleString('en-US', {
+  const num = Number(value);
+  const formatted = num.toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
