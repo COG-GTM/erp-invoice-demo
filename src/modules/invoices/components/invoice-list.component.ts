@@ -166,8 +166,8 @@ export class InvoiceListComponent implements OnInit {
       const tax = computeTaxAmount(inv);
       const gross = computeGrossAmount(inv);
       csvRows.push([
-        `"${inv.number}"`,
-        `"${inv.customerName}"`,
+        `"${inv.number.replace(/"/g, '""')}"`,
+        `"${inv.customerName.replace(/"/g, '""')}"`,
         inv.issueDate,
         inv.dueDate,
         net.toFixed(2),

@@ -71,8 +71,8 @@ export class InvoiceService {
       errors.push('Invoice number format is invalid. Please use the pattern XX/YYYY/NNNNN (e.g. FV/2024/00001).');
     }
 
-    // Rule 6: At least one line item required
-    if (!data.items || data.items.length === 0) {
+    // Rule 6: At least one line item required (skip when amount is provided directly without items)
+    if ((!data.items || data.items.length === 0) && !(data.amount > 0)) {
       errors.push('At least one line item is required. Please add an item to the invoice.');
     }
 
