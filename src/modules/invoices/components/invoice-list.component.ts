@@ -21,9 +21,9 @@ import {
       <div class="toolbar">
         <ui-button variant="primary" (click)="onCreate()">Create Invoice</ui-button>
         <ui-button variant="secondary" [disabled]="!selectedInvoice" (click)="onEdit()">Edit</ui-button>
-        <ui-button variant="danger" [disabled]="!selectedInvoice" (click)="confirmDeleteOpen = true">Delete</ui-button>
+        <ui-button variant="danger" [disabled]="!selectedInvoice" (click)="confirmDeleteOpen = true">Delete Invoice</ui-button>
         <ui-button variant="secondary" [disabled]="!selectedInvoice" (click)="onPrint()">Print</ui-button>
-        <ui-button variant="secondary" (click)="onExport()">Export</ui-button>
+        <ui-button variant="secondary" (click)="onExport()">Export to CSV</ui-button>
       </div>
     </div>
 
@@ -32,7 +32,8 @@ import {
       [rows]="tableRows"
       [emptyMessage]="'No invoices found'"
       [selectedRow]="selectedRow"
-      (rowClick)="onRowSelect($event)" />
+      (rowClick)="onRowSelect($event)"
+      (rowDblClick)="onRowNavigate($event)" />
 
     <div class="status-bar">
       Records: {{ invoices.length }} | Filter: {{ activeFilter || 'None' }}
@@ -136,6 +137,10 @@ export class InvoiceListComponent implements OnInit {
       this.selectedRow = row;
       this.selectedInvoice = this.invoices.find(i => i.id === row['id']) || null;
     }
+  }
+
+  onRowNavigate(row: Record<string, any>) {
+    this.router.navigate(['/invoices', row['id']]);
   }
 
   onDeleteConfirm() {

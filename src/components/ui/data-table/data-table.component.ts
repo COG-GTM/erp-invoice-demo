@@ -33,6 +33,7 @@ export interface TableColumn {
           </tr>
           <tr *ngFor="let row of rows"
               (click)="rowClick.emit(row)"
+              (dblclick)="rowDblClick.emit(row)"
               class="table-row"
               [class.selected]="selectedRow === row">
             <td *ngFor="let col of columns" [style.text-align]="col.align || 'left'">
@@ -89,4 +90,5 @@ export class DataTableComponent {
   @Input() emptyMessage = 'No records found';
   @Input() selectedRow: Record<string, any> | null = null;
   @Output() rowClick = new EventEmitter<Record<string, any>>();
+  @Output() rowDblClick = new EventEmitter<Record<string, any>>();
 }
