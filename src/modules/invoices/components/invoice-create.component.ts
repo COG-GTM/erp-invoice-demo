@@ -124,7 +124,6 @@ export class InvoiceCreateComponent {
     taxAmount: 0,
     grossAmount: 0,
     currency: 'PLN',
-    items: [],
     notes: '',
   };
   errors: Record<string, string> = {};
