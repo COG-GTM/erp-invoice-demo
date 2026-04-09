@@ -23,7 +23,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             fieldId="number"
             placeholder="e.g. FV/2024/00001"
             [error]="errors['number'] || ''"
-            [(ngModel)]="form.number"
+            [(ngModel)]="form['number']"
             name="number" />
 
           <ui-form-field
@@ -31,7 +31,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             fieldId="customerName"
             placeholder="Enter customer name"
             [error]="errors['customerName'] || ''"
-            [(ngModel)]="form.customerName"
+            [(ngModel)]="form['customerName']"
             name="customerName" />
 
           <ui-form-field
@@ -39,7 +39,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             fieldId="issueDate"
             type="date"
             [error]="errors['issueDate'] || ''"
-            [(ngModel)]="form.issueDate"
+            [(ngModel)]="form['issueDate']"
             name="issueDate" />
 
           <ui-form-field
@@ -47,7 +47,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             fieldId="dueDate"
             type="date"
             [error]="errors['dueDate'] || ''"
-            [(ngModel)]="form.dueDate"
+            [(ngModel)]="form['dueDate']"
             name="dueDate" />
 
           <ui-form-field
@@ -56,14 +56,14 @@ import { InvoiceFormData } from '../models/invoice.model';
             type="number"
             placeholder="0.00"
             [error]="errors['amount'] || ''"
-            [(ngModel)]="form.amount"
+            [(ngModel)]="form['amount']"
             name="amount" />
 
           <ui-form-field
             label="Currency"
             fieldId="currency"
             placeholder="PLN"
-            [(ngModel)]="form.currency"
+            [(ngModel)]="form['currency']"
             name="currency" />
         </div>
 
