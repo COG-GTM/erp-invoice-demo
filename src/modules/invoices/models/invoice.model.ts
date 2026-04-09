@@ -5,6 +5,8 @@ export interface Invoice {
   issueDate: string;
   dueDate: string;
   amount: number;
+  taxAmount: number;
+  grossAmount: number;
   currency: string;
   status: 'draft' | 'sent' | 'paid' | 'overdue' | 'cancelled';
   items: InvoiceItem[];

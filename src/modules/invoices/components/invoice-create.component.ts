@@ -121,6 +121,8 @@ export class InvoiceCreateComponent {
     issueDate: '',
     dueDate: '',
     amount: 0,
+    taxAmount: 0,
+    grossAmount: 0,
     currency: 'PLN',
     items: [],
     notes: '',
