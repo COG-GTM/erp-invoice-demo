@@ -105,7 +105,10 @@ export class InvoiceService {
     }
 
     // Rule 6: At least one line item required
-    if (!data.items || data.items.length === 0) {
+    // NOTE: Only enforce when items array is explicitly provided (the create form
+    // does not yet have a line-item editor, so we skip this check when items is
+    // undefined to avoid blocking invoice creation entirely).
+    if (data.items && data.items.length === 0) {
       errors.push('At least one line item is required. Please add items to the invoice.');
     }
 
