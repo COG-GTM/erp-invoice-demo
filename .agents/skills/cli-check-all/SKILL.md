@@ -6,7 +6,7 @@ triggers: ["user"]
 
 ## Steps
 
-1. Run the **token audit**: follow the procedure in `.agents/skills/cli-token-audit/SKILL.md`. Capture the mismatch count.
+1. Run the **token audit**: follow the procedure in `.agents/skills/design-token-audit/SKILL.md` (Audit section only — do not fix). Capture the mismatch count.
 
 2. Run the **UX writing review**: follow the procedure in `.agents/skills/cli-ux-review/SKILL.md` for the Invoice module. Capture the violation count.
 
