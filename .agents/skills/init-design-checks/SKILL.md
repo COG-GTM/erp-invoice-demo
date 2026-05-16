@@ -6,7 +6,7 @@ triggers: ["user"]
 
 ## Context
 
-This skill is meant to be run inside a repo that does not yet have design verification skills. It scaffolds the folder structure and skill files so the designer can immediately start using `cli-token-audit`, `cli-ux-review`, `cli-desktop-parity`, and `cli-check-all`.
+This skill is meant to be run inside a repo that does not yet have design verification skills. It scaffolds the folder structure and skill files so the designer can immediately start using `design-token-audit`, `cli-ux-review`, `cli-desktop-parity`, and `cli-check-all`.
 
 ## Steps
 
@@ -24,7 +24,7 @@ This skill is meant to be run inside a repo that does not yet have design verifi
 
 3. **Create the directory structure.** For each applicable skill, create:
    ```
-   .agents/skills/cli-token-audit/SKILL.md
+   .agents/skills/design-token-audit/SKILL.md
    .agents/skills/cli-ux-review/SKILL.md
    .agents/skills/cli-desktop-parity/SKILL.md
    .agents/skills/cli-check-all/SKILL.md
@@ -32,7 +32,7 @@ This skill is meant to be run inside a repo that does not yet have design verifi
 
 4. **Write the skill files.** Use the same structure as the templates in this repo, but replace paths with the answers from step 2:
 
-   - **cli-token-audit**: Replace `src/tokens/tokens.spec.json` and `src/tokens/tokens.css` with the designer's token spec and implementation paths.
+   - **design-token-audit**: Replace `src/tokens/tokens.spec.json` and `src/tokens/tokens.css` with the designer's token spec and implementation paths.
    - **cli-ux-review**: Replace `docs/ux-glossary.md` with the designer's glossary path. Replace `src/modules/` with their modules path.
    - **cli-desktop-parity**: Replace `legacy/validation-rules.html` and `src/modules/invoices/services/invoice.service.ts` with the designer's legacy reference and web implementation paths.
    - **cli-check-all**: References the other three skills, no path changes needed.
@@ -44,14 +44,14 @@ This skill is meant to be run inside a repo that does not yet have design verifi
    ```
    Setup complete! Here are your commands:
 
-   devin "@skills:cli-token-audit"       Check tokens against the design spec
+   devin "@skills:design-token-audit"     Check tokens against the design spec
    devin "@skills:cli-ux-review"         Review UX writing in a module
    devin "@skills:cli-desktop-parity"    Compare legacy vs. web implementation
    devin "@skills:cli-check-all"         Run all checks at once
 
    Tip: Add these aliases to your shell profile for quick access:
 
-   alias check-tokens='devin "@skills:cli-token-audit"'
+   alias check-tokens='devin "@skills:design-token-audit"'
    alias check-ux='devin "@skills:cli-ux-review"'
    alias check-parity='devin "@skills:cli-desktop-parity"'
    alias check-all='devin "@skills:cli-check-all"'
