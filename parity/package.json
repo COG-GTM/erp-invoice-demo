@@ -1,0 +1,17 @@
+{
+  "name": "erp-invoice-parity",
+  "private": true,
+  "description": "Playwright parity suite: same specs against the baseline (v17, :4000) and upgraded (v21, :4200) apps",
+  "scripts": {
+    "test": "playwright test",
+    "test:baseline": "playwright test --project=baseline",
+    "test:upgraded": "playwright test --project=upgraded",
+    "report": "node compose-report.js",
+    "parity": "node run-parity.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "pixelmatch": "5.3.0",
+    "pngjs": "7.0.0"
+  }
+}

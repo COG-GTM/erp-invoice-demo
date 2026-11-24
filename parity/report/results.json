@@ -1,0 +1,994 @@
+{
+  "config": {
+    "configFile": "/home/ubuntu/repos/erp-invoice-demo/parity/playwright.config.ts",
+    "rootDir": "/home/ubuntu/repos/erp-invoice-demo/parity/specs",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/ubuntu/repos/erp-invoice-demo/parity/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "baseline",
+        "name": "baseline",
+        "testDir": "/home/ubuntu/repos/erp-invoice-demo/parity/specs",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/ubuntu/repos/erp-invoice-demo/parity/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "upgraded",
+        "name": "upgraded",
+        "testDir": "/home/ubuntu/repos/erp-invoice-demo/parity/specs",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "01-list.spec.ts",
+      "file": "01-list.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "root redirects to the empty invoice list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 267,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:55.716Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d59a2b7614070a51f30b-b83747a7a8340577008f",
+          "file": "01-list.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "nav link returns to the list from the create page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 233,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:56.044Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d59a2b7614070a51f30b-edc43607c05ca1dbfe0e",
+          "file": "01-list.spec.ts",
+          "line": 18,
+          "column": 5
+        },
+        {
+          "title": "root redirects to the empty invoice list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 310,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:00.779Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d59a2b7614070a51f30b-67d2dbc85da648181cd7",
+          "file": "01-list.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "nav link returns to the list from the create page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 242,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:01.151Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d59a2b7614070a51f30b-dfe45db57b002a845be4",
+          "file": "01-list.spec.ts",
+          "line": 18,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "02-create.spec.ts",
+      "file": "02-create.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "create form renders with defaults",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 285,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:56.289Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-af01b715c72111acf76b",
+          "file": "02-create.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "submitting an empty form shows the validation banner",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 262,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:56.580Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-fe30e998c5c957f37677",
+          "file": "02-create.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "due date before issue date is rejected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 255,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:56.848Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-ad4578a6199c80e8c791",
+          "file": "02-create.spec.ts",
+          "line": 28,
+          "column": 5
+        },
+        {
+          "title": "cancel returns to the list without creating",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 236,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:57.110Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-d0d267e4b98f01afc5c5",
+          "file": "02-create.spec.ts",
+          "line": 39,
+          "column": 5
+        },
+        {
+          "title": "valid invoice is created and listed as draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 367,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:57.353Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-6bf110ed0a3851adbc7f",
+          "file": "02-create.spec.ts",
+          "line": 47,
+          "column": 5
+        },
+        {
+          "title": "two invoices are listed in creation order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 447,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:57.728Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-7b586a1f8930032f108c",
+          "file": "02-create.spec.ts",
+          "line": 57,
+          "column": 5
+        },
+        {
+          "title": "create form renders with defaults",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 298,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:01.406Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-ce65125958fbcdabc052",
+          "file": "02-create.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "submitting an empty form shows the validation banner",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 297,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:01.711Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-419ae30e8df315d10d45",
+          "file": "02-create.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "due date before issue date is rejected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 341,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:02.014Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-5dcb3fe675946625cb14",
+          "file": "02-create.spec.ts",
+          "line": 28,
+          "column": 5
+        },
+        {
+          "title": "cancel returns to the list without creating",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 343,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:02.365Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-e77a1e9c82591e8f3d7e",
+          "file": "02-create.spec.ts",
+          "line": 39,
+          "column": 5
+        },
+        {
+          "title": "valid invoice is created and listed as draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 506,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:02.718Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-f86dd6b291fda144d818",
+          "file": "02-create.spec.ts",
+          "line": 47,
+          "column": 5
+        },
+        {
+          "title": "two invoices are listed in creation order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 507,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:03.231Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "707c2bb70d74a8b9d0af-e9eabd3165905dd0962d",
+          "file": "02-create.spec.ts",
+          "line": 57,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "03-detail.spec.ts",
+      "file": "03-detail.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "row click opens the invoice detail",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 448,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:58.183Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-f34115ffc7c514bf9fa4",
+          "file": "03-detail.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "delete modal opens, cancels, and closes on backdrop click",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 559,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:58.637Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-5f7e3772be60b408f245",
+          "file": "03-detail.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "confirming delete removes the invoice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 448,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:59.203Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-beeaeb10cb441905a22f",
+          "file": "03-detail.spec.ts",
+          "line": 38,
+          "column": 5
+        },
+        {
+          "title": "unknown invoice id shows not found",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 245,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:59.657Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-00b2d7c3c624d24e3363",
+          "file": "03-detail.spec.ts",
+          "line": 47,
+          "column": 5
+        },
+        {
+          "title": "invoices are in memory only and do not survive a reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "baseline",
+              "projectName": "baseline",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 445,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:07:59.908Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-8c91828ea1efaf3de018",
+          "file": "03-detail.spec.ts",
+          "line": 55,
+          "column": 5
+        },
+        {
+          "title": "row click opens the invoice detail",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 498,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:03.749Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-6d7b2e27bcecbb17c799",
+          "file": "03-detail.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "delete modal opens, cancels, and closes on backdrop click",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 699,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:04.254Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-3afb3a7117621086d39b",
+          "file": "03-detail.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "confirming delete removes the invoice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 490,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:04.961Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-6033344366e1a2adacac",
+          "file": "03-detail.spec.ts",
+          "line": 38,
+          "column": 5
+        },
+        {
+          "title": "unknown invoice id shows not found",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 280,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:05.459Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-e52598541c3e812cc2d2",
+          "file": "03-detail.spec.ts",
+          "line": 47,
+          "column": 5
+        },
+        {
+          "title": "invoices are in memory only and do not survive a reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "upgraded",
+              "projectName": "upgraded",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 505,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-24T03:08:05.746Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fd8afcba67dc3282efca-15c5dff7ce976055cb80",
+          "file": "03-detail.spec.ts",
+          "line": 55,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-24T03:07:55.294Z",
+    "duration": 11005.792000000001,
+    "expected": 26,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

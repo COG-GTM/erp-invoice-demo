@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { DataTableComponent, TableColumn, ButtonComponent } from '../../../components/ui';
 import { InvoiceService } from '../services/invoice.service';
 import { Invoice } from '../models/invoice.model';
 
 @Component({
-  selector: 'app-invoice-list',
-  standalone: true,
-  imports: [CommonModule, DataTableComponent, ButtonComponent],
-  template: `
+    selector: 'app-invoice-list',
+    imports: [DataTableComponent, ButtonComponent],
+    template: `
     <div class="page-header">
       <h2 class="page-title">Invoices</h2>
       <ui-button variant="primary" (click)="onCreate()">
@@ -20,10 +19,10 @@ import { Invoice } from '../models/invoice.model';
     <!-- DEFECT: no empty state handling — table just renders with no rows -->
     <ui-data-table
       [columns]="columns"
-      [rows]="invoices"
+      [rows]="invoices()"
       (rowClick)="onRowClick($event)" />
   `,
-  styles: [`
+    styles: [`
     .page-header {
       display: flex;
       align-items: center;
@@ -36,7 +35,10 @@ import { Invoice } from '../models/invoice.model';
     }
   `]
 })
-export class InvoiceListComponent implements OnInit {
+export class InvoiceListComponent {
+  private invoiceService = inject(InvoiceService);
+  private router = inject(Router);
+
   columns: TableColumn[] = [
     { key: 'number', label: 'Invoice #', width: '140px' },
     { key: 'customerName', label: 'Customer' },
@@ -45,16 +47,7 @@ export class InvoiceListComponent implements OnInit {
     { key: 'amount', label: 'Amount', width: '120px', align: 'right' },
     { key: 'status', label: 'Status', width: '100px' },
   ];
-  invoices: Invoice[] = [];
-
-  constructor(
-    private invoiceService: InvoiceService,
-    private router: Router,
-  ) {}
-
-  ngOnInit() {
-    this.invoiceService.getAll().subscribe(data => this.invoices = data);
-  }
+  readonly invoices = toSignal(this.invoiceService.getAll(), { initialValue: [] as Invoice[] });
 
   onCreate() {
     this.router.navigate(['/invoices/create']);

@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input, output } from '@angular/core';
+
 
 export interface TableColumn {
   key: string;
@@ -9,33 +9,38 @@ export interface TableColumn {
 }
 
 @Component({
-  selector: 'ui-data-table',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'ui-data-table',
+    imports: [],
+    template: `
     <div class="table-wrapper">
       <table class="data-table">
         <thead>
           <tr>
-            <th *ngFor="let col of columns"
+            @for (col of columns(); track col) {
+              <th
                 [style.width]="col.width"
                 [style.text-align]="col.align || 'left'">
-              {{ col.label }}
-            </th>
+                {{ col.label }}
+              </th>
+            }
           </tr>
         </thead>
         <tbody>
           <!-- DEFECT: no empty state — just renders nothing when rows is empty -->
-          <tr *ngFor="let row of rows" (click)="rowClick.emit(row)" class="table-row">
-            <td *ngFor="let col of columns" [style.text-align]="col.align || 'left'">
-              {{ row[col.key] }}
-            </td>
-          </tr>
+          @for (row of rows(); track row) {
+            <tr (click)="rowClick.emit(row)" class="table-row">
+              @for (col of columns(); track col) {
+                <td [style.text-align]="col.align || 'left'">
+                  {{ row[col.key] }}
+                </td>
+              }
+            </tr>
+          }
         </tbody>
       </table>
     </div>
   `,
-  styles: [`
+    styles: [`
     .table-wrapper {
       background: var(--color-bg-surface);
       border: 1px solid var(--color-border);
@@ -69,7 +74,7 @@ export interface TableColumn {
   `]
 })
 export class DataTableComponent {
-  @Input() columns: TableColumn[] = [];
-  @Input() rows: Record<string, any>[] = [];
-  @Output() rowClick = new EventEmitter<Record<string, any>>();
+  readonly columns = input<TableColumn[]>([]);
+  readonly rows = input<Record<string, any>[]>([]);
+  readonly rowClick = output<Record<string, any>>();
 }

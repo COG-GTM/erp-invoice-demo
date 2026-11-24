@@ -1,31 +1,31 @@
-import { Component, Input, forwardRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, forwardRef, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'ui-form-field',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => FormFieldComponent),
-    multi: true,
-  }],
-  template: `
+    selector: 'ui-form-field',
+    imports: [ReactiveFormsModule],
+    providers: [{
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FormFieldComponent),
+            multi: true,
+        }],
+    template: `
     <div class="form-field" [class.form-field--error]="error">
-      <label class="form-label" [attr.for]="fieldId">{{ label }}</label>
+      <label class="form-label" [attr.for]="fieldId()">{{ label() }}</label>
       <input
         class="form-input"
-        [id]="fieldId"
-        [type]="type"
-        [placeholder]="placeholder"
+        [id]="fieldId()"
+        [type]="type()"
+        [placeholder]="placeholder()"
         [value]="value"
         (input)="onInput($event)"
         (blur)="onTouched()" />
-      <span class="form-error" *ngIf="error">{{ error }}</span>
+      @if (error) {
+        <span class="form-error">{{ error }}</span>
+      }
     </div>
   `,
-  styles: [`
+    styles: [`
     .form-field { display: flex; flex-direction: column; gap: var(--space-xs); }
     .form-label {
       font-size: var(--font-size-sm);
@@ -53,11 +53,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   `]
 })
 export class FormFieldComponent implements ControlValueAccessor {
-  @Input() label = '';
-  @Input() type = 'text';
-  @Input() placeholder = '';
+  readonly label = input('');
+  readonly type = input('text');
+  readonly placeholder = input('');
   @Input() error = '';
-  @Input() fieldId = '';
+  readonly fieldId = input('');
 
   value = '';
   onChange: (val: string) => void = () => {};

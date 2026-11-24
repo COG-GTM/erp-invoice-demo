@@ -1,27 +1,27 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input, output } from '@angular/core';
 
 @Component({
-  selector: 'ui-modal',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="modal-backdrop" *ngIf="open" (click)="close.emit()">
-      <div class="modal-panel" (click)="$event.stopPropagation()">
-        <div class="modal-header">
-          <h2 class="modal-title">{{ title }}</h2>
-          <button class="modal-close" (click)="close.emit()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <ng-content />
-        </div>
-        <div class="modal-footer">
-          <ng-content select="[modal-footer]" />
+    selector: 'ui-modal',
+    imports: [],
+    template: `
+    @if (open()) {
+      <div class="modal-backdrop" (click)="close.emit()">
+        <div class="modal-panel" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h2 class="modal-title">{{ title() }}</h2>
+            <button class="modal-close" (click)="close.emit()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <ng-content />
+          </div>
+          <div class="modal-footer">
+            <ng-content select="[modal-footer]" />
+          </div>
         </div>
       </div>
-    </div>
+    }
   `,
-  styles: [`
+    styles: [`
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -69,7 +69,7 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class ModalComponent {
-  @Input() open = false;
-  @Input() title = '';
-  @Output() close = new EventEmitter<void>();
+  readonly open = input(false);
+  readonly title = input('');
+  readonly close = output<void>();
 }

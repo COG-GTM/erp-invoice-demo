@@ -49,7 +49,7 @@ Trigger workflows in Windsurf with `/<workflow-name>`:
 
 ## Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 20.19+, 22.12+ or 24+ and npm (required by Angular 21)
 - Angular CLI (`npm install -g @angular/cli`)
 
 ## Getting Started
