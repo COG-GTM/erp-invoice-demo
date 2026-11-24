@@ -2,10 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'ui-modal',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'ui-modal',
+    imports: [CommonModule],
+    template: `
     <div class="modal-backdrop" *ngIf="open" (click)="close.emit()">
       <div class="modal-panel" (click)="$event.stopPropagation()">
         <div class="modal-header">
@@ -21,7 +20,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     .modal-backdrop {
       position: fixed;
       inset: 0;

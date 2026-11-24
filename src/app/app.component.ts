@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, RouterLink],
-  template: `
+    selector: 'app-root',
+    imports: [RouterOutlet, RouterLink],
+    template: `
     <div class="app-shell">
       <header class="app-header">
         <h1 class="app-title">ERP Invoice Web</h1>
@@ -18,7 +17,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
       </main>
     </div>
   `,
-  styles: [`
+    styles: [`
     .app-shell {
       min-height: 100vh;
       display: flex;

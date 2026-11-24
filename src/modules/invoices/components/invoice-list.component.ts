@@ -6,10 +6,9 @@ import { InvoiceService } from '../services/invoice.service';
 import { Invoice } from '../models/invoice.model';
 
 @Component({
-  selector: 'app-invoice-list',
-  standalone: true,
-  imports: [CommonModule, DataTableComponent, ButtonComponent],
-  template: `
+    selector: 'app-invoice-list',
+    imports: [CommonModule, DataTableComponent, ButtonComponent],
+    template: `
     <div class="page-header">
       <h2 class="page-title">Invoices</h2>
       <ui-button variant="primary" (click)="onCreate()">
@@ -23,7 +22,7 @@ import { Invoice } from '../models/invoice.model';
       [rows]="invoices"
       (rowClick)="onRowClick($event)" />
   `,
-  styles: [`
+    styles: [`
     .page-header {
       display: flex;
       align-items: center;

@@ -2,10 +2,9 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'ui-button',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'ui-button',
+    imports: [CommonModule],
+    template: `
     <button
       [class]="'btn btn--' + variant + ' btn--' + size"
       [disabled]="disabled"
@@ -13,7 +12,7 @@ import { CommonModule } from '@angular/common';
       <ng-content />
     </button>
   `,
-  styles: [`
+    styles: [`
     .btn {
       display: inline-flex;
       align-items: center;

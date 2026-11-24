@@ -7,10 +7,9 @@ import { InvoiceService } from '../services/invoice.service';
 import { InvoiceFormData } from '../models/invoice.model';
 
 @Component({
-  selector: 'app-invoice-create',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent, FormFieldComponent],
-  template: `
+    selector: 'app-invoice-create',
+    imports: [CommonModule, FormsModule, ButtonComponent, FormFieldComponent],
+    template: `
     <div class="create-page">
       <div class="create-header">
         <h2 class="create-title">New Invoice</h2>
@@ -80,7 +79,7 @@ import { InvoiceFormData } from '../models/invoice.model';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     .create-header { margin-bottom: var(--space-lg); }
     .create-title {
       font-size: var(--font-size-xl);

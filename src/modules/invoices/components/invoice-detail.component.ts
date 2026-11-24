@@ -6,10 +6,9 @@ import { InvoiceService } from '../services/invoice.service';
 import { Invoice } from '../models/invoice.model';
 
 @Component({
-  selector: 'app-invoice-detail',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent, ModalComponent],
-  template: `
+    selector: 'app-invoice-detail',
+    imports: [CommonModule, ButtonComponent, ModalComponent],
+    template: `
     <div *ngIf="invoice" class="detail-page">
       <div class="detail-header">
         <div>
@@ -85,7 +84,7 @@ import { Invoice } from '../models/invoice.model';
       <ui-button variant="secondary" (click)="onBack()">Back to list</ui-button>
     </div>
   `,
-  styles: [`
+    styles: [`
     .detail-header {
       display: flex;
       justify-content: space-between;

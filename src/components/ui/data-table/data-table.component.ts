@@ -9,10 +9,9 @@ export interface TableColumn {
 }
 
 @Component({
-  selector: 'ui-data-table',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'ui-data-table',
+    imports: [CommonModule],
+    template: `
     <div class="table-wrapper">
       <table class="data-table">
         <thead>
@@ -35,7 +34,7 @@ export interface TableColumn {
       </table>
     </div>
   `,
-  styles: [`
+    styles: [`
     .table-wrapper {
       background: var(--color-bg-surface);
       border: 1px solid var(--color-border);
