@@ -26,7 +26,7 @@ Totals: baseline 13 passed / 0 failed; upgraded 13 passed / 0 failed.
 |---|---|---|---|
 | [01-list-empty.png](side-by-side/01-list-empty.png) | 0.00% | 0 | 1280x800 / 1280x800 |
 | [02-create-form.png](side-by-side/02-create-form.png) | 0.00% | 0 | 1280x800 / 1280x800 |
-| [03-create-errors.png](side-by-side/03-create-errors.png) | 0.00% | 0 | 1280x800 / 1280x800 |
+| [03-create-errors.png](side-by-side/03-create-errors.png) | 0.00% | 2732 | 1280x800 / 1280x800 |
 | [04-list-one-invoice.png](side-by-side/04-list-one-invoice.png) | 0.00% | 19 | 1280x800 / 1280x800 |
 | [05-detail.png](side-by-side/05-detail.png) | 0.00% | 0 | 1280x800 / 1280x800 |
 | [06-delete-modal.png](side-by-side/06-delete-modal.png) | 0.00% | 0 | 1280x800 / 1280x800 |
