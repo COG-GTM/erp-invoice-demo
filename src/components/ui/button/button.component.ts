@@ -1,13 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'ui-button',
     imports: [],
     template: `
     <button
-      [class]="'btn btn--' + variant + ' btn--' + size"
-      [disabled]="disabled"
-      [type]="type">
+      [class]="'btn btn--' + variant() + ' btn--' + size()"
+      [disabled]="disabled()"
+      [type]="type()">
       <ng-content />
     </button>
   `,
@@ -53,8 +53,8 @@ import { Component, Input } from '@angular/core';
   `]
 })
 export class ButtonComponent {
-  @Input() variant: 'primary' | 'secondary' | 'danger' = 'primary';
-  @Input() size: 'sm' | 'md' | 'lg' = 'md';
-  @Input() disabled = false;
-  @Input() type: 'button' | 'submit' = 'button';
+  readonly variant = input<'primary' | 'secondary' | 'danger'>('primary');
+  readonly size = input<'sm' | 'md' | 'lg'>('md');
+  readonly disabled = input(false);
+  readonly type = input<'button' | 'submit'>('button');
 }

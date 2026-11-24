@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -11,12 +11,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
         }],
     template: `
     <div class="form-field" [class.form-field--error]="error">
-      <label class="form-label" [attr.for]="fieldId">{{ label }}</label>
+      <label class="form-label" [attr.for]="fieldId()">{{ label() }}</label>
       <input
         class="form-input"
-        [id]="fieldId"
-        [type]="type"
-        [placeholder]="placeholder"
+        [id]="fieldId()"
+        [type]="type()"
+        [placeholder]="placeholder()"
         [value]="value"
         (input)="onInput($event)"
         (blur)="onTouched()" />
@@ -53,11 +53,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   `]
 })
 export class FormFieldComponent implements ControlValueAccessor {
-  @Input() label = '';
-  @Input() type = 'text';
-  @Input() placeholder = '';
+  readonly label = input('');
+  readonly type = input('text');
+  readonly placeholder = input('');
   @Input() error = '';
-  @Input() fieldId = '';
+  readonly fieldId = input('');
 
   value = '';
   onChange: (val: string) => void = () => {};

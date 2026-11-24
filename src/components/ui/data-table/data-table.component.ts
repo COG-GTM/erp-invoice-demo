@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, input } from '@angular/core';
 
 
 export interface TableColumn {
@@ -16,7 +16,7 @@ export interface TableColumn {
       <table class="data-table">
         <thead>
           <tr>
-            @for (col of columns; track col) {
+            @for (col of columns(); track col) {
               <th
                 [style.width]="col.width"
                 [style.text-align]="col.align || 'left'">
@@ -27,9 +27,9 @@ export interface TableColumn {
         </thead>
         <tbody>
           <!-- DEFECT: no empty state — just renders nothing when rows is empty -->
-          @for (row of rows; track row) {
+          @for (row of rows(); track row) {
             <tr (click)="rowClick.emit(row)" class="table-row">
-              @for (col of columns; track col) {
+              @for (col of columns(); track col) {
                 <td [style.text-align]="col.align || 'left'">
                   {{ row[col.key] }}
                 </td>
@@ -74,7 +74,7 @@ export interface TableColumn {
   `]
 })
 export class DataTableComponent {
-  @Input() columns: TableColumn[] = [];
-  @Input() rows: Record<string, any>[] = [];
+  readonly columns = input<TableColumn[]>([]);
+  readonly rows = input<Record<string, any>[]>([]);
   @Output() rowClick = new EventEmitter<Record<string, any>>();
 }
