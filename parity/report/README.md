@@ -1,6 +1,6 @@
 # Parity report: baseline (Angular 17, :4000) vs upgraded (Angular 21, :4200)
 
-Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm test && npm run report` in `parity/`.
+Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm test; npm run report` in `parity/`.
 
 Totals: baseline 13 passed / 0 failed; upgraded 13 passed / 0 failed.
 

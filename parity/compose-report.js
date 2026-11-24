@@ -23,11 +23,18 @@ function pad(img, w, h) {
 const names = fs.existsSync(path.join(screens, 'baseline'))
   ? fs.readdirSync(path.join(screens, 'baseline')).filter(f => f.endsWith('.png')).sort()
   : [];
+const resultsFile = path.join(report, 'results.json');
+const runStart = fs.existsSync(resultsFile)
+  ? Date.parse(JSON.parse(fs.readFileSync(resultsFile, 'utf8')).stats?.startTime) || 0
+  : 0;
+const stale = f => fs.existsSync(f) && fs.statSync(f).mtimeMs < runStart;
 const shots = [];
 for (const name of names) {
-  const a = load(path.join(screens, 'baseline', name));
-  const b = load(path.join(screens, 'upgraded', name));
+  const fa = path.join(screens, 'baseline', name), fb = path.join(screens, 'upgraded', name);
+  const a = load(fa);
+  const b = load(fb);
   if (!b) { shots.push({ name, diff: 'missing upgraded' }); continue; }
+  if (stale(fa) || stale(fb)) { shots.push({ name, diff: 'stale (not captured in the last run)' }); continue; }
   const w = Math.max(a.width, b.width), h = Math.max(a.height, b.height);
   const pa = pad(a, w, h), pb = pad(b, w, h);
   const diffImg = new PNG({ width: w, height: h });
@@ -62,10 +69,11 @@ const rows = new Map();
 
 const icon = s => (s === 'passed' ? 'pass' : s ? `**${s}**` : 'not run');
 const count = (p, st) => [...rows.values()].filter(r => r[p] === st).length;
+const failed = p => [...rows.values()].filter(r => r[p] && !['passed', 'skipped'].includes(r[p])).length;
 let md = '# Parity report: baseline (Angular 17, :4000) vs upgraded (Angular 21, :4200)\n\n';
-md += 'Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm test && npm run report` in `parity/`.\n\n';
-md += `Totals: baseline ${count('baseline', 'passed')} passed / ${count('baseline', 'failed')} failed; `;
-md += `upgraded ${count('upgraded', 'passed')} passed / ${count('upgraded', 'failed')} failed.\n\n`;
+md += 'Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm test; npm run report` in `parity/`.\n\n';
+md += `Totals: baseline ${count('baseline', 'passed')} passed / ${failed('baseline')} failed; `;
+md += `upgraded ${count('upgraded', 'passed')} passed / ${failed('upgraded')} failed.\n\n`;
 md += '| Page / flow | Baseline | Upgraded |\n|---|---|---|\n';
 for (const [k, r] of rows) md += `| ${k} | ${icon(r.baseline)} | ${icon(r.upgraded)} |\n`;
 md += '\n## Screenshots (baseline left, upgraded right)\n\n| Page | Pixel diff | Size (baseline / upgraded) |\n|---|---|---|\n';
