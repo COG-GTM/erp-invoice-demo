@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { createInvoice, invoice, route, snap } from './helpers';
+import { RUN_ID, createInvoice, invoice, route, snap } from './helpers';
 
 test('create form renders with defaults', async ({ page }, testInfo) => {
   await page.goto(route('/invoices'));
@@ -56,7 +56,7 @@ test('valid invoice is created and listed as draft', async ({ page }, testInfo) 
 
 test('two invoices are listed in creation order', async ({ page }) => {
   await createInvoice(page);
-  const second = { ...invoice, number: `FV/2024/9${invoice.number.slice(-4)}`, customerName: `Second ${invoice.customerName}` };
+  const second = { ...invoice, number: `FV/2025/${RUN_ID}`, customerName: `Second ${invoice.customerName}` };
   await page.getByRole('button', { name: 'Submit' }).click();
   await page.getByLabel('Invoice Number').fill(second.number);
   await page.getByLabel('Customer Name').fill(second.customerName);
