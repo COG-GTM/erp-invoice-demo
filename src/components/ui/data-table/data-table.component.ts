@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 
 export interface TableColumn {
@@ -76,5 +76,5 @@ export interface TableColumn {
 export class DataTableComponent {
   readonly columns = input<TableColumn[]>([]);
   readonly rows = input<Record<string, any>[]>([]);
-  @Output() rowClick = new EventEmitter<Record<string, any>>();
+  readonly rowClick = output<Record<string, any>>();
 }

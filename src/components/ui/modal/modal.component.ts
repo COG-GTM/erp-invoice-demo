@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
     selector: 'ui-modal',
@@ -71,5 +71,5 @@ import { Component, Output, EventEmitter, input } from '@angular/core';
 export class ModalComponent {
   readonly open = input(false);
   readonly title = input('');
-  @Output() close = new EventEmitter<void>();
+  readonly close = output<void>();
 }
