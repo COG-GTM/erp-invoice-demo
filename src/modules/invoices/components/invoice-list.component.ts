@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableComponent, TableColumn, ButtonComponent } from '../../../components/ui';
 import { InvoiceService } from '../services/invoice.service';
@@ -35,6 +35,9 @@ import { Invoice } from '../models/invoice.model';
   `]
 })
 export class InvoiceListComponent implements OnInit {
+  private invoiceService = inject(InvoiceService);
+  private router = inject(Router);
+
   columns: TableColumn[] = [
     { key: 'number', label: 'Invoice #', width: '140px' },
     { key: 'customerName', label: 'Customer' },
@@ -44,11 +47,6 @@ export class InvoiceListComponent implements OnInit {
     { key: 'status', label: 'Status', width: '100px' },
   ];
   invoices: Invoice[] = [];
-
-  constructor(
-    private invoiceService: InvoiceService,
-    private router: Router,
-  ) {}
 
   ngOnInit() {
     this.invoiceService.getAll().subscribe(data => this.invoices = data);

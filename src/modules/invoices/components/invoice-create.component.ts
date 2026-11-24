@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent, FormFieldComponent } from '../../../components/ui';
@@ -115,6 +115,9 @@ import { InvoiceFormData } from '../models/invoice.model';
   `]
 })
 export class InvoiceCreateComponent {
+  private invoiceService = inject(InvoiceService);
+  private router = inject(Router);
+
   form: InvoiceFormData = {
     number: '',
     customerName: '',
@@ -127,11 +130,6 @@ export class InvoiceCreateComponent {
   };
   errors: Record<string, string> = {};
   submitError = '';
-
-  constructor(
-    private invoiceService: InvoiceService,
-    private router: Router,
-  ) {}
 
   onSubmit() {
     this.errors = {};

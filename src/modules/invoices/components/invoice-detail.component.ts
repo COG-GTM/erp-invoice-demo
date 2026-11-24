@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent, ModalComponent } from '../../../components/ui';
@@ -166,14 +166,12 @@ import { Invoice } from '../models/invoice.model';
   `]
 })
 export class InvoiceDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private invoiceService = inject(InvoiceService);
+
   invoice?: Invoice;
   confirmDelete = false;
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private invoiceService: InvoiceService,
-  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
