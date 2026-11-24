@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent, FormFieldComponent } from '../../../components/ui';
@@ -20,7 +20,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             label="Invoice Number"
             fieldId="number"
             placeholder="e.g. FV/2024/00001"
-            [error]="errors['number'] || ''"
+            [error]="errors()['number'] || ''"
             [(ngModel)]="form.number"
             name="number" />
 
@@ -28,7 +28,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             label="Customer Name"
             fieldId="customerName"
             placeholder="Enter customer name"
-            [error]="errors['customerName'] || ''"
+            [error]="errors()['customerName'] || ''"
             [(ngModel)]="form.customerName"
             name="customerName" />
 
@@ -36,7 +36,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             label="Issue Date"
             fieldId="issueDate"
             type="date"
-            [error]="errors['issueDate'] || ''"
+            [error]="errors()['issueDate'] || ''"
             [(ngModel)]="form.issueDate"
             name="issueDate" />
 
@@ -44,7 +44,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             label="Due Date"
             fieldId="dueDate"
             type="date"
-            [error]="errors['dueDate'] || ''"
+            [error]="errors()['dueDate'] || ''"
             [(ngModel)]="form.dueDate"
             name="dueDate" />
 
@@ -53,7 +53,7 @@ import { InvoiceFormData } from '../models/invoice.model';
             fieldId="amount"
             type="number"
             placeholder="0.00"
-            [error]="errors['amount'] || ''"
+            [error]="errors()['amount'] || ''"
             [(ngModel)]="form.amount"
             name="amount" />
 
@@ -73,9 +73,9 @@ import { InvoiceFormData } from '../models/invoice.model';
         </div>
       </form>
 
-      @if (submitError) {
+      @if (submitError()) {
         <div class="error-banner">
-          {{ submitError }}
+          {{ submitError() }}
         </div>
       }
     </div>
@@ -128,17 +128,17 @@ export class InvoiceCreateComponent {
     items: [],
     notes: '',
   };
-  errors: Record<string, string> = {};
-  submitError = '';
+  readonly errors = signal<Record<string, string>>({});
+  readonly submitError = signal('');
 
   onSubmit() {
-    this.errors = {};
-    this.submitError = '';
+    this.errors.set({});
+    this.submitError.set('');
     try {
       this.invoiceService.create(this.form);
       this.router.navigate(['/invoices']);
     } catch (e: any) {
-      this.submitError = e.message;
+      this.submitError.set(e.message);
     }
   }
 

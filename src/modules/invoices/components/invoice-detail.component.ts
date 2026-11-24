@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent, ModalComponent } from '../../../components/ui';
@@ -9,7 +9,7 @@ import { Invoice } from '../models/invoice.model';
     selector: 'app-invoice-detail',
     imports: [CommonModule, ButtonComponent, ModalComponent],
     template: `
-    @if (invoice) {
+    @if (invoice(); as invoice) {
       <div class="detail-page">
         <div class="detail-header">
           <div>
@@ -20,7 +20,7 @@ import { Invoice } from '../models/invoice.model';
           </div>
           <div class="detail-actions">
             <ui-button variant="secondary" (click)="onBack()">Back</ui-button>
-            <ui-button variant="danger" (click)="confirmDelete = true">
+            <ui-button variant="danger" (click)="confirmDelete.set(true)">
               Submit <!-- DEFECT: should be "Delete Invoice" (action verb) -->
             </ui-button>
           </div>
@@ -70,10 +70,10 @@ import { Invoice } from '../models/invoice.model';
             </table>
           </div>
         }
-        <ui-modal [open]="confirmDelete" title="Delete Invoice" (close)="confirmDelete = false">
+        <ui-modal [open]="confirmDelete()" title="Delete Invoice" (close)="confirmDelete.set(false)">
           <p>Are you sure you want to delete invoice {{ invoice.number }}? This action cannot be undone.</p>
           <div modal-footer>
-            <ui-button variant="secondary" (click)="confirmDelete = false">Cancel</ui-button>
+            <ui-button variant="secondary" (click)="confirmDelete.set(false)">Cancel</ui-button>
             <ui-button variant="danger" (click)="onDelete()">
               Submit <!-- DEFECT: should be "Confirm Delete" (action verb) -->
             </ui-button>
@@ -82,7 +82,7 @@ import { Invoice } from '../models/invoice.model';
       </div>
     }
 
-    @if (!invoice) {
+    @if (!invoice()) {
       <div class="not-found">
         <p>Invoice not found.</p>
         <ui-button variant="secondary" (click)="onBack()">Back to list</ui-button>
@@ -165,24 +165,25 @@ import { Invoice } from '../models/invoice.model';
     }
   `]
 })
-export class InvoiceDetailComponent implements OnInit {
+export class InvoiceDetailComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private invoiceService = inject(InvoiceService);
 
-  invoice?: Invoice;
-  confirmDelete = false;
+  readonly invoice = signal<Invoice | undefined>(this.findInvoice());
+  readonly confirmDelete = signal(false);
 
-  ngOnInit() {
+  private findInvoice(): Invoice | undefined {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) this.invoice = this.invoiceService.getById(id);
+    return id ? this.invoiceService.getById(id) : undefined;
   }
 
   onBack() { this.router.navigate(['/invoices']); }
 
   onDelete() {
-    if (this.invoice) {
-      this.invoiceService.delete(this.invoice.id);
+    const invoice = this.invoice();
+    if (invoice) {
+      this.invoiceService.delete(invoice.id);
       this.router.navigate(['/invoices']);
     }
   }
