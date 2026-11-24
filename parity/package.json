@@ -6,7 +6,8 @@
     "test": "playwright test",
     "test:baseline": "playwright test --project=baseline",
     "test:upgraded": "playwright test --project=upgraded",
-    "report": "node compose-report.js"
+    "report": "node compose-report.js",
+    "parity": "playwright test; status=$?; node compose-report.js; exit $status"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",

@@ -1,6 +1,6 @@
 # Parity report: baseline (Angular 17, :4000) vs upgraded (Angular 21, :4200)
 
-Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm test; npm run report` in `parity/`.
+Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm run parity` (runs both projects, writes this report, exits non-zero if any test failed) in `parity/`.
 
 Totals: baseline 13 passed / 0 failed; upgraded 13 passed / 0 failed.
 
@@ -22,14 +22,14 @@ Totals: baseline 13 passed / 0 failed; upgraded 13 passed / 0 failed.
 
 ## Screenshots (baseline left, upgraded right)
 
-| Page | Pixel diff | Size (baseline / upgraded) |
-|---|---|---|
-| [01-list-empty.png](side-by-side/01-list-empty.png) | 0.00% | 1280x800 / 1280x800 |
-| [02-create-form.png](side-by-side/02-create-form.png) | 0.00% | 1280x800 / 1280x800 |
-| [03-create-errors.png](side-by-side/03-create-errors.png) | 0.00% | 1280x800 / 1280x800 |
-| [04-list-one-invoice.png](side-by-side/04-list-one-invoice.png) | 0.00% | 1280x800 / 1280x800 |
-| [05-detail.png](side-by-side/05-detail.png) | 0.00% | 1280x800 / 1280x800 |
-| [06-delete-modal.png](side-by-side/06-delete-modal.png) | 0.00% | 1280x800 / 1280x800 |
-| [07-not-found.png](side-by-side/07-not-found.png) | 0.00% | 1280x800 / 1280x800 |
+| Page | Pixel diff (pixelmatch, threshold 0.1) | Raw differing pixels (exact RGB) | Size (baseline / upgraded) |
+|---|---|---|---|
+| [01-list-empty.png](side-by-side/01-list-empty.png) | 0.00% | 0 | 1280x800 / 1280x800 |
+| [02-create-form.png](side-by-side/02-create-form.png) | 0.00% | 0 | 1280x800 / 1280x800 |
+| [03-create-errors.png](side-by-side/03-create-errors.png) | 0.00% | 0 | 1280x800 / 1280x800 |
+| [04-list-one-invoice.png](side-by-side/04-list-one-invoice.png) | 0.00% | 19 | 1280x800 / 1280x800 |
+| [05-detail.png](side-by-side/05-detail.png) | 0.00% | 0 | 1280x800 / 1280x800 |
+| [06-delete-modal.png](side-by-side/06-delete-modal.png) | 0.00% | 0 | 1280x800 / 1280x800 |
+| [07-not-found.png](side-by-side/07-not-found.png) | 0.00% | 0 | 1280x800 / 1280x800 |
 
 The app keeps invoices in memory only and has no backend, so no retries are configured.

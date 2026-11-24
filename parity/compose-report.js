@@ -39,13 +39,17 @@ for (const name of names) {
   const pa = pad(a, w, h), pb = pad(b, w, h);
   const diffImg = new PNG({ width: w, height: h });
   const changed = pixelmatch(pa.data, pb.data, diffImg.data, w, h, { threshold: 0.1 });
+  let raw = 0;
+  for (let i = 0; i < pa.data.length; i += 4) {
+    if (pa.data[i] !== pb.data[i] || pa.data[i + 1] !== pb.data[i + 1] || pa.data[i + 2] !== pb.data[i + 2]) raw++;
+  }
   const gap = 16;
   const combo = new PNG({ width: w * 2 + gap, height: h });
   combo.data.fill(0);
   PNG.bitblt(pa, combo, 0, 0, w, h, 0, 0);
   PNG.bitblt(pb, combo, 0, 0, w, h, w + gap, 0);
   fs.writeFileSync(path.join(outDir, name), PNG.sync.write(combo));
-  shots.push({ name, diff: ((changed / (w * h)) * 100).toFixed(2) + '%', size: `${a.width}x${a.height} / ${b.width}x${b.height}` });
+  shots.push({ name, diff: ((changed / (w * h)) * 100).toFixed(2) + '%', raw, size: `${a.width}x${a.height} / ${b.width}x${b.height}` });
 }
 
 const results = fs.existsSync(path.join(report, 'results.json'))
@@ -71,13 +75,15 @@ const icon = s => (s === 'passed' ? 'pass' : s ? `**${s}**` : 'not run');
 const count = (p, st) => [...rows.values()].filter(r => r[p] === st).length;
 const failed = p => [...rows.values()].filter(r => r[p] && !['passed', 'skipped'].includes(r[p])).length;
 let md = '# Parity report: baseline (Angular 17, :4000) vs upgraded (Angular 21, :4200)\n\n';
-md += 'Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm test; npm run report` in `parity/`.\n\n';
+md += 'Same Playwright specs run against both apps (`parity/specs`). Regenerate with `npm run parity` (runs both projects, writes this report, exits non-zero if any test failed) in `parity/`.\n\n';
 md += `Totals: baseline ${count('baseline', 'passed')} passed / ${failed('baseline')} failed; `;
 md += `upgraded ${count('upgraded', 'passed')} passed / ${failed('upgraded')} failed.\n\n`;
+const runErrors = results.errors || [];
+if (runErrors.length) md += `**Run-level errors (${runErrors.length}):** the suite did not run cleanly.\n\n` + runErrors.map(e => '- ' + String(e.message || e).split('\n')[0]).join('\n') + '\n\n';
 md += '| Page / flow | Baseline | Upgraded |\n|---|---|---|\n';
 for (const [k, r] of rows) md += `| ${k} | ${icon(r.baseline)} | ${icon(r.upgraded)} |\n`;
-md += '\n## Screenshots (baseline left, upgraded right)\n\n| Page | Pixel diff | Size (baseline / upgraded) |\n|---|---|---|\n';
-for (const s of shots) md += `| [${s.name}](side-by-side/${s.name}) | ${s.diff} | ${s.size ?? ''} |\n`;
+md += '\n## Screenshots (baseline left, upgraded right)\n\n| Page | Pixel diff (pixelmatch, threshold 0.1) | Raw differing pixels (exact RGB) | Size (baseline / upgraded) |\n|---|---|---|---|\n';
+for (const s of shots) md += `| [${s.name}](side-by-side/${s.name}) | ${s.diff} | ${s.raw ?? ''} | ${s.size ?? ''} |\n`;
 md += '\nThe app keeps invoices in memory only and has no backend, so no retries are configured.\n';
 fs.writeFileSync(path.join(report, 'README.md'), md);
 console.log(md);
