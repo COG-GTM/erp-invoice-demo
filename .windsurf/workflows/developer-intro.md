@@ -9,7 +9,7 @@ This is a workflow for fullstack Angular developers learning Windsurf. Keep the 
 
 ## Steps
 
-1. Greet the developer. Explain that this training uses a simplified ERP Invoice module (Angular 17, standalone components) with intentional design debt and logic gaps planted for training exercises.
+1. Greet the developer. Explain that this training uses a simplified ERP Invoice module (Angular 21, standalone components) with intentional design debt and logic gaps planted for training exercises.
 
 2. Help the developer run the app. Set up dependencies (`npm install`) and start the dev server (`ng serve`). Point them to http://localhost:4200.
 
