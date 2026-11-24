@@ -32,10 +32,15 @@ describe('InvoiceService', () => {
   });
 
   it('reports the four implemented validation rules', () => {
-    expect(service.validate({ ...valid, customerName: ' ' }).length).toBe(1);
-    expect(service.validate({ ...valid, issueDate: '' }).length).toBe(1);
-    expect(service.validate({ ...valid, dueDate: '2023-12-31' }).length).toBe(1);
-    expect(service.validate({ ...valid, amount: 0 }).length).toBe(1);
+    const only = (data: InvoiceFormData) => {
+      const errors = service.validate(data);
+      expect(errors.length).toBe(1);
+      return errors[0];
+    };
+    expect(only({ ...valid, customerName: ' ' })).toMatch(/customer/i);
+    expect(only({ ...valid, issueDate: '' })).toMatch(/issue date/i);
+    expect(only({ ...valid, dueDate: '2023-12-31' })).toMatch(/due date/i);
+    expect(only({ ...valid, amount: 0 })).toMatch(/amount/i);
     expect(service.validate({ ...valid, customerName: ' ', issueDate: '', amount: 0 }).length).toBe(3);
   });
 
